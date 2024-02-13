@@ -1,0 +1,34 @@
+{
+    "name": "updateVector",
+    "type": "DATABASE",
+    "disabled": false,
+    "config": {
+        "collection": "qa",
+        "database": "sbb",
+        "full_document": true,
+        "full_document_before_change": false,
+        "match": {
+            "updateDescription.updatedFields.vector_embedding": {
+                "$exists": false
+            }
+        },
+        "maximum_throughput": false,
+        "operation_types": [
+            "INSERT",
+            "UPDATE",
+            "REPLACE"
+        ],
+        "project": {},
+        "service_name": "mongodb-atlas",
+        "skip_catchup_events": true,
+        "tolerate_resume_errors": true,
+        "unordered": true
+    },
+    "event_processors": {
+        "FUNCTION": {
+            "config": {
+                "function_name": "updateVector"
+            }
+        }
+    }
+}
